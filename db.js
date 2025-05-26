@@ -10,23 +10,34 @@
     );
 */
 
-const mysql = require('mysql2');
-const dotenv = require('dotenv');
+const mysql = require("mysql2");
+const dotenv = require("dotenv");
 dotenv.config();
+const fs = require("fs");
+const path = require("path");
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
+  ssl: process.env.MYSQL_SSL === "true"
+    ? { ca: fs.readFileSync(path.join(__dirname, "ca.pem")) }
+    : false,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-connection.connect((err) => {
+// Optional: To test the connection
+pool.getConnection((err, connection) => {
   if (err) {
-    console.error('Database connection failed:', err.stack);
-    return;
+    console.error("❌ Database connection failed:", err.message);
+  } else {
+    console.log("✅ Connected to MySQL DB");
+    connection.release(); // release after test
   }
-  console.log('Connected to MySQL DB');
 });
 
-module.exports = connection;
+module.exports = pool;
