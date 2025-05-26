@@ -99,7 +99,11 @@ The API will run at http://localhost:3000.
 ---
 
 ## Testing
-Use the provided Postman collection (SchoolManagementAPI.postman_collection.json) to test the APIs with example requests.
+Use the provided Postman collection (SchoolManagementAPI.postman_collection.json) to test the APIs with example requests : 
+https://api.postman.com/collections/38648093-32b5b9ef-47ec-4af8-ad17-761abb9b79c8?access_key=PMAT-01JW6F1GXNZDMBTGADAWKJ8ZXP
+
+Import this in your Postman for testing.
+
 
 ---
 
