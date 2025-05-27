@@ -1,6 +1,6 @@
 # School Locator API
 
-A RESTful API built with **Node.js**, **Express.js**, and **MySQL** to manage school data in India.  
+A RESTful API built with **Node.js**, **Express.js**, and **MySQL** to manage school data.  
 The API allows users to add new schools and retrieve a list of schools sorted by proximity to a user-specified location using the Haversine formula.
 
 ---
